@@ -12,12 +12,23 @@ body {
 .panier {
     margin:auto 20px auto 10px
 }
+.panier-container:hover .panier{
+    transform: scale(1.1);
+}
+.panier-container:hover {
+    cursor: pointer;
+}
 .bandeau {
     background:#553019;
     justify-content: center;
 }
 .mon-compte {
     padding:0 10px;
+}
+.mon-compte:hover {
+    cursor: pointer;
+    font-weight: bold;
+    transform: scale(1.1);
 }
 .content-bandeau {
     margin:auto;
@@ -29,14 +40,23 @@ body {
 .bandeau * {
     color:white;
     font-family:'Roboto Slab', serif;
+    font-size: 16px;
 }
 .pub {
     margin:auto 0 auto 40px;
+    font-weight: bold;
 }
 .my-account>div{
     margin:auto;
 }
-
+.croix {
+    font-size: 32.64px;
+    font-family: 'PT Sans', sans-serif;
+    position:absolute;
+    top:0px;
+    right:10px;
+    display: none;
+}
 /* Classes générales */
 
 .d-flex {
@@ -50,6 +70,7 @@ hr {
 }
 
 /* Main */
+
 .main {
     max-width:1200px;
     margin:0px auto;
@@ -67,20 +88,49 @@ hr {
     justify-content:center;
 }
 
+#svg-menu {
+    cursor:pointer;
+    display: none;
+}
+
+.full-menu {
+    display: flex;
+}
+
 .menu-item {
     margin:10px 20px;
     padding:10px;
-    font-size: 30px;
+    font-size: 24px;
     color:#ffffff;
     font-family:'Roboto Slab', serif;
+    transition:0.5s;
+}
+
+.menu-item:not(.not):hover {
+    color: #543018;
+    cursor: pointer;
+    transform:scale(1.3)
 }
 
 .articles {
-    margin:40px 20px 0 20px;
+    margin:40px 20px 20px 20px;
+}
+
+.alternative {
+    display: none;
 }
 
 .article-element {
     margin:20px 20px 0 20px;
+}
+
+.article-element:hover .article-titre{
+    background:rgb(255, 232, 184);
+}
+
+.article-element:hover{
+    cursor: pointer;
+    animation: shadow 1s linear infinite alternate;
 }
 
 .article-titre {
@@ -91,12 +141,12 @@ hr {
     justify-content: center;
     font-family: 'Roboto Slab', serif;
     font-weight: bold;
-    font-size:30px
+    font-size:27px;
+    transition:0.75s;
 }
 
 .article-photo {
-    background-size:auto;
-    background:center;
+    background-size:100%;
     width:540px;
     height:345px;
 }
@@ -112,12 +162,11 @@ hr {
 .titre {
     margin:0 20px 0 20px;
     flex-direction: column;
-    font-size:30px;
+    font-size:62.35px;
     width:540px;
     font-family: 'Roboto Slab', serif;
     font-weight: bold;
     justify-content: center;
-    font-size: 65px;
 }
 
 .titre>div {
@@ -128,7 +177,8 @@ hr {
 .introduction {
     margin:0 20px 0 20px;
     width:540px;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
+    font-size:15px;
+    font-family: 'Open Sans', sans-serif;
 }
 
 .bouton {
@@ -137,13 +187,19 @@ hr {
     font-family:'Roboto Slab', serif;
     padding:5px 20px;
     font-weight: bold;
-    width:fit-content
+    font-size: 20px;
+    width:fit-content;
+    transition:1s;
 }
-
+.bouton:hover {
+    background: #553019;
+    cursor:pointer;
+}
 /* Articles suplémentaires */
 
 .sub-articles {
     margin:15px 20px 0 20px;
+    padding-bottom: 30px;
 }
 
 .sub-article-element {
@@ -152,18 +208,262 @@ hr {
 
 .sub-article-titre {
     display:flex;
-    padding:20px;
+    padding:10px 20px 10px 20px;
     font-size: larger;
     margin:auto;
     justify-content: center;
     font-family: 'Roboto Slab', serif;
     font-weight: bold;
-    font-size:20px
+    font-size:18.86px;
+    transition:0.75s;
 }
 
 .sub-article-photo {
-    background-size:auto;
     background:center;
     width:348px;
     height:224px;
+    background-size:100%
 }
+.sub-article-element:hover .sub-article-titre{
+    background:rgb(255, 232, 184);
+}
+
+.sub-article-element:hover{
+    cursor: pointer;
+    animation: shadow 1s linear infinite alternate;
+}
+@-moz-document url-prefix() {
+    .sub-article-element:hover{
+        animation:none;
+        box-shadow:  1px 1px 1px 1px rgb(105, 105, 105) ;
+    }
+    .article-element:hover {
+        animation:none;
+        box-shadow:  1px 1px 1px 1px rgb(105, 105, 105) ;
+    }
+    .bouton {
+        width:146px;
+        justify-content: center;
+        display: flex;
+    }
+    @media screen and (max-width: 1200px) {
+        .bouton {
+            width: 220px;
+        }
+    }
+  }
+
+@keyframes shadow {
+    from {
+        -webkit-box-shadow: 1px 1px 1px 1px rgb(105, 105, 105) ;
+        box-shadow:  1px 1px 1px 1px rgb(105, 105, 105) ;
+    }
+    to {
+        -webkit-box-shadow: 3px 3px 3px 1px rgb(105, 105, 105) ;
+        box-shadow: 3px 3px 3px 1px rgb(105, 105, 105) ;
+    }
+}
+
+
+/* Footer */
+
+.footer {
+    padding:20px;
+    background-color: #aa7b51;
+    overflow-x: hidden;
+}
+
+/* Responsive général */
+
+@media screen and (max-width: 1200px) {
+
+/* Bandeau */
+
+    .content-bandeau {
+        flex-direction: column;
+        height: auto;
+    }
+    .pub {
+        background-color: #aa7b51;
+        padding:10px 35px 10px 10px;
+        margin:0px;
+        font-size: 15.68px;
+    }
+    .my-account {
+        padding:20px;
+    }
+    .mon-compte {
+        margin:auto 10px auto auto !important;
+    }
+    .panier-container{
+        margin:auto auto auto 10px !important;
+    }
+    .croix {
+        cursor: pointer;
+        display: inherit;
+    }
+
+/* Main */
+
+    .logo {
+        width:100%;
+        max-width: 500px;
+    }
+    .full-menu {
+        display: none;
+    }
+    .menu {
+        position: relative;
+    }
+    #svg-menu {
+        height:40px;
+        display: inherit;
+        position:absolute;
+        right:20px;
+        top:16px;
+    }
+    .show-menu {
+        position:absolute;
+        flex-direction: column;
+        display:flex;
+        top:100%;
+        transition: 2s;
+        width:100%;
+        overflow-x: hidden;
+    }
+    .show-menu>.menu-item {
+        background-color: #c7b299;
+        margin:0px;
+        width:100%;
+        text-align: center;
+        transform: translateX(100%);
+        animation: menu 0.75s ;
+        animation-fill-mode: forwards;
+    }
+
+    @keyframes menu {
+        from {
+            transform:translateX(100%)
+        }
+        to {
+            transform:translateX(0px)
+        }
+    }
+
+/* Articles */
+
+    .articles {
+        flex-direction: column;
+    }
+    .article-element {
+        width:fit-content;
+        margin: 20px auto;
+    }
+    .article-photo {
+        width:90vw;
+        height:55vw;
+    }
+    .article-titre {
+        display: flex;
+        font-size: 21.38px;
+        padding:20px 0px;
+        margin:auto;
+        text-align: center;
+        justify-content: center;
+    }
+    .to-hide {
+        display: none;
+    }
+    .alternative {
+        display:block;
+    }
+
+/* Découverte */
+
+    .decouverte {
+        flex-direction: column;
+    }
+    .titre {
+        font-size: 11.5vw;
+        width:auto;
+    }
+    .introduction {
+        width:auto;
+        font-size: 18px;
+        text-align: center;
+        margin:0 30px 0 30px;
+    }
+    .titre>div:nth-child(2) {
+        font-size: 14vw !important;
+    }
+    .bouton {
+        font-size: 29.8px;
+        padding: 5px 25px;
+        margin: 30px auto 0 auto;
+    }
+
+
+/* Articles supplémentaires */
+
+    .sub-articles {
+        flex-direction: column;
+    }
+    .sub-article-photo {
+        width:90vw;
+        height:55vw;
+    }
+    .sub-article-titre {
+        display: flex;
+        font-size: 23.17px;
+        padding:20px 0px;
+        margin:auto;
+        justify-content: center;
+    }
+    .sub-article-element {
+        width:fit-content;
+        margin: 20px auto;
+    }
+
+/* Footer */
+
+    #menu2 {
+        flex-direction: column;
+    }
+    #menu2>.menu-item {
+        justify-content: center;
+        display: flex;
+    }
+    .legal {
+        flex-direction: column;
+    }
+    .legal>div {
+        justify-content: center;
+        display: flex;
+    }
+  }
+
+/* Limitation de tailles */
+
+@media screen and (min-width: 720px) and (max-width: 1199px) {
+    .titre {
+        font-size: 90px;
+    }
+    .titre>div:nth-child(2) {
+        font-size: 100px !important;
+    }
+  }
+
+/* Amélioration premiers articles */
+
+@media screen and (min-width: 850px) and (max-width: 1199px) {
+    .articles {
+        flex-direction: row;
+    }
+    .article-element {
+        max-width: 40vw;
+    }
+    .article-photo {
+        width:40vw;
+        height:24.444vw;
+    }
+  }
